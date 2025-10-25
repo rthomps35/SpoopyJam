@@ -3,8 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+	
 	[SerializeField] Rigidbody2D rigidbody2D;
+	[SerializeField] Camera gameCamera;
 	public float speed; //This should be the max speed probably? Right and just work up to it
+
+
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -62,6 +66,8 @@ public class PlayerController : MonoBehaviour
 		{
 			rigidbody2D.linearVelocity = rigidbody2D.linearVelocity / 1.005f;   //Grabbed thos line from stack overflow and i'm shocked it works. I need to find a way to reverse this without exceeding speed.
 		}
+
+		Camera.main.transform.position = new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, -10);
 		Debug.Log(rigidbody2D.linearVelocity);
 	}
 }

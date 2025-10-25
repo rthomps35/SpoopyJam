@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dbe00c42d27a51949be528926e51a049
+guid: 672ab1694f30a5c45bf3c078822ef475
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3875171717114371916
-    second: TestMap_0
+      213: 3549416370930238950
+    second: PHGrass_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestMap_0
+      name: PHGrass_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 41
-        height: 39
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4f1e3a252067c530800000000000000
-      internalID: 3875171717114371916
+      spriteID: 6e5c04d326f024130800000000000000
+      internalID: 3549416370930238950
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TestMap_0: 3875171717114371916
+      PHGrass_0: 3549416370930238950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -8,18 +8,14 @@ public class MapCreator : MonoBehaviour
 	[SerializeField] Texture2D mapPNG;  //The map texture
 	public GameObject[,] MapTiles = new GameObject[0, 0];
 	[SerializeField] PrefabManager PM;
+	[SerializeField] GameObject gameMap;
 
-
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
-    {
-        
-    }
+	//Distinction here: Tiles are items under active objects. So stuff you can walk on. The default is grass.
 
 	
-	void MapGenerator()
+	public void MapGenerator()
 	{
-		mapPNG = Resources.Load<Texture2D>("Art/map"); //Grab the provincemap
+		mapPNG = Resources.Load<Texture2D>("Map"); //Grab the provincemap
 		MapTiles = new GameObject[mapPNG.width, mapPNG.height];
 		int xInc = 0;//sprite chunk
 		int yInc = 0;
@@ -28,10 +24,11 @@ public class MapCreator : MonoBehaviour
 			for (int x = 0; x < mapPNG.width; x++)
 			{
 				Color thisPixel = mapPNG.GetPixel(x, y);
-				GameObject newTile = Instantiate(Tile, new Vector2(x, y), Quaternion.identity, gameMap.transform);
-				tileSelector(thisPixel, x, y, newTile);    //make the tile based on the RGB value
+				GameObject newTile = tileSelector(thisPixel, x, y);//Instantiate(PM.TileGrass, new Vector2(x, y), Quaternion.identity, gameMap.transform);
+				//tileSelector(thisPixel, x, y, newTile);    //make the tile based on the RGB value //This is going to be second pass?
 				MapTiles[x, y] = newTile;
 
+				//So this is a chunk approach it looks like
 				if (x == xInc && y == yInc)
 				{
 					xInc += 4;
@@ -44,8 +41,8 @@ public class MapCreator : MonoBehaviour
 				}
 				else
 				{
-					SpriteRenderer TS = newTile.GetComponent<SpriteRenderer>();
-					TS.enabled = false;
+					//SpriteRenderer TS = newTile.GetComponent<SpriteRenderer>();
+					//TS.enabled = false;	//Don't know why I did this?
 				}
 				Debug.Log(xInc);
 
@@ -63,49 +60,74 @@ public class MapCreator : MonoBehaviour
 	}
 
 	
-	void tileSelector(Color pixelColor, int x, int y, GameObject tile)
+	GameObject tileSelector(Color pixelColor, int x, int y)
 	{
 		int r = (int)(pixelColor.r * 255);  //needs to be convereted to 255 color
 		int g = (int)(pixelColor.g * 255);
 		int b = (int)(pixelColor.b * 255);
 
-		GameObject newGameObject;
+		
 		//Tile tileScript = tile.GetComponent<TileScript>();
+		//
 
+		//This is dark greem bush?
 		if (r == 38 && g == 127 && b == 0)
 		{
-			newGameObject = Instantiate(PM.BorderObject, new Vector3(x, y), Quaternion.identity, gameMap.transform);   //Border
+			GameObject newGameObject = Instantiate(PM.Bush, new Vector3(x, y), Quaternion.identity, gameMap.transform);   //Border
 			//tileScript.Walkable = false;
 			//tileScript.ObjectOnTile = newGameObject;
+			return newGameObject;
 		}
+		//Gray is sidewalk?
 		else if (r == 64 && g == 64 && b == 64)
 		{
-			newGameObject = Instantiate(PM.GraveObject, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Graves
+			GameObject newGameObject = Instantiate(PM.TileSidewalk, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Graves
 			//AllGraves.Add(newGameObject);
 			//tileScript.Walkable = true;
 			//tileScript.ObjectOnTile = newGameObject;
+			return newGameObject;
 		}
+		//Red is player house
 		else if (r == 255 && g == 0 && b == 0)
 		{
-			newGameObject = Instantiate(PM.SpawnObject, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Spwan
+			GameObject newGameObject = Instantiate(PM.House, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Spwan
 			//spawns.Add(newGameObject);
 			//tileScript.Walkable = true;
 			//tileScript.ObjectOnTile = newGameObject;
+			return newGameObject;
 		}
+		//Blue is another house
+		else if (r == 0 && g == 0 && b == 255)
+		{
+			GameObject newGameObject = Instantiate(PM.House, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Spwan
+
+
+			//spawns.Add(newGameObject);
+			//tileScript.Walkable = true;
+			//tileScript.ObjectOnTile = newGameObject;
+			return newGameObject;
+		}
+		
+		//Black is the street
 		else if (r == 0 && g == 0 && b == 0)
 		{
-			newGameObject = Instantiate(PM.TombstoneObject, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Graves
+			GameObject newGameObject = Instantiate(PM.TileRoad, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Graves
 			//tileScript.Walkable = false;
 			//tileScript.ObjectOnTile = newGameObject;
 			//TileScript ts = MapTiles[x, y - 1].GetComponent<TileScript>();    //link to nearby grave
 			//GraveScript gs = ts.ObjectOnTile.GetComponent<GraveScript>();
 			//gs.Tombstone = newGameObject;
+			return newGameObject;
 		}
+		//Default will be white
 		else
 		{
-			//tileScript.Walkable = true;
+			GameObject newGameObject = Instantiate(PM.TileGrass, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Grass
+																																//GRASS?
+																																//tileScript.Walkable = true;
+			return newGameObject;
 		}
-
+		
 
 	}
 	
