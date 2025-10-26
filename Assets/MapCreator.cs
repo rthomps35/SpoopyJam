@@ -44,7 +44,7 @@ public class MapCreator : MonoBehaviour
 					//SpriteRenderer TS = newTile.GetComponent<SpriteRenderer>();
 					//TS.enabled = false;	//Don't know why I did this?
 				}
-				Debug.Log(xInc);
+				//Debug.Log(xInc);
 
 				newTile.name = $"Tile{x}.{y}";
 			}

@@ -13,7 +13,5 @@ public class PrefabManager : MonoBehaviour
 	public GameObject TileSidewalk;
 	public GameObject Bush;
 	public GameObject Tree;
-
-	//Canonically Witches are real 
 }
 

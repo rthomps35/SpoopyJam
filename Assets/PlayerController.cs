@@ -1,14 +1,16 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 
-	
+	[SerializeField] GameManager GM;
 	[SerializeField] Rigidbody2D rigidbody2D;
 	[SerializeField] Camera gameCamera;
+	[SerializeField] BoxCollider2D playerCollider;
 	public float speed; //This should be the max speed probably? Right and just work up to it
 
-
+	
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 		playerMovementAndControl();
+		eatSugar();	//This causes the up and down to lock totally?
+		
 	}
 
 	void playerMovementAndControl()
@@ -68,6 +72,42 @@ public class PlayerController : MonoBehaviour
 		}
 
 		Camera.main.transform.position = new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, -10);
-		Debug.Log(rigidbody2D.linearVelocity);
+		//Debug.Log(rigidbody2D.linearVelocity);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+
+		if (collision.gameObject.CompareTag("Sugar"))
+		{
+			//Debug.Log("I hit Candy!");
+			GM.PlayerSugar += 1;
+			GM.updateUICount(0);	//Insert the type of candy
+			Destroy(collision.gameObject);
+		}
+		else if (collision.gameObject.CompareTag("Choco"))
+		{
+			//Debug.Log("I hit Candy!");
+			GM.PlayerChoco += 1;
+			GM.updateUICount(1);    //Insert the type of candy
+			Destroy(collision.gameObject);
+		}
+		else if (collision.gameObject.CompareTag("Hard"))
+		{
+			//Debug.Log("I hit Candy!");
+			GM.PlayerHard += 1;
+			GM.updateUICount(2);    //Insert the type of candy
+			Destroy(collision.gameObject);
+		}
+	}
+
+	void eatSugar()
+	{
+		if (GM.PlayerSugar != 0 && Input.GetKey(KeyCode.Alpha1)) 
+		{
+			//Increase Speed
+			GM.PlayerSugar -= 1;
+			GM.updateUICount(0);    //Insert the type of candy
+		}
 	}
 }

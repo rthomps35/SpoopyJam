@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 02e48ed841acd564280586eefcbf65fb
+guid: 0e51bf0a65e70e94abb67d53c0862f74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6689468738011474671
-    second: candy-chocolate_0
+      213: -8801819111103863087
+    second: Timer_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: candy-chocolate_0
+      name: Timer_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 32
-        height: 18
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fea2149ff54c5dc50800000000000000
-      internalID: 6689468738011474671
+      spriteID: 1d6e8690728a9d580800000000000000
+      internalID: -8801819111103863087
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      candy-chocolate_0: 6689468738011474671
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
