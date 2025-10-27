@@ -111,12 +111,7 @@ public class MapCreator : MonoBehaviour
 		//Black is the street
 		else if (r == 0 && g == 0 && b == 0)
 		{
-			GameObject newGameObject = Instantiate(PM.TileRoad, new Vector3(x, y), Quaternion.identity, gameMap.transform);    //Graves
-			//tileScript.Walkable = false;
-			//tileScript.ObjectOnTile = newGameObject;
-			//TileScript ts = MapTiles[x, y - 1].GetComponent<TileScript>();    //link to nearby grave
-			//GraveScript gs = ts.ObjectOnTile.GetComponent<GraveScript>();
-			//gs.Tombstone = newGameObject;
+			GameObject newGameObject = Instantiate(PM.TileRoad, new Vector3(x, y), Quaternion.identity, gameMap.transform);
 			return newGameObject;
 		}
 		//Default will be white

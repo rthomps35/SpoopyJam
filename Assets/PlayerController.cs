@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,8 +10,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Camera gameCamera;
 	[SerializeField] BoxCollider2D playerCollider;
 	public float speed; //This should be the max speed probably? Right and just work up to it
+	[SerializeField] float baseSpeed;
 
-	
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -105,9 +106,17 @@ public class PlayerController : MonoBehaviour
 	{
 		if (GM.PlayerSugar != 0 && Input.GetKey(KeyCode.Alpha1)) 
 		{
-			//Increase Speed
+			
 			GM.PlayerSugar -= 1;
+			StartCoroutine(SpeedBoost());
 			GM.updateUICount(0);    //Insert the type of candy
 		}
+	}
+
+	private IEnumerator SpeedBoost()
+	{
+		speed = baseSpeed * (float)1.5;
+		yield return new WaitForSeconds(5);
+		speed = baseSpeed;
 	}
 }
